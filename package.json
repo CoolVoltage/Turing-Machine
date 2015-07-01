@@ -1,0 +1,23 @@
+{
+  "name": "turingmachine",
+  "version": "0.0.1",
+  "description": "Implementation of turing machine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoolVoltage/Turing-Machine.git"
+  },
+  "keywords": [
+    "turing",
+    "machine"
+  ],
+  "author": "Karthik Vijay <vijaypcguy@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/CoolVoltage/Turing-Machine/issues"
+  },
+  "homepage": "https://github.com/CoolVoltage/Turing-Machine#readme"
+}
