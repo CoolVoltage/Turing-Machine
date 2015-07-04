@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/CoolVoltage/Turing-Machine#readme",
   "dependencies": {
-    "rewire": "^2.3.4"
+    "rewire": "^2.3.4",
+    "underscore": "^1.8.3"
   }
 }

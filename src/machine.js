@@ -1,3 +1,4 @@
+var _ = require("underscore");
 // The turing machine
 
 	//The head of the machine varies -MAX_SAFE_INTEGER to +MAX_SAFE_INTEGER
@@ -51,16 +52,25 @@
 	var currentState;
 
 	//Table of instructions
-	//Each instruction is denoted as {currentState,valueOnStack,replacementValue,headMovement}
+	//Each instruction is denoted as {currentState,valueOnTape,replacementValue,headMovement}
 	var table=[];
 
 	//To add instruction sets to the table
 	//No replacementValue signifies no replacement
 	//No headMovement signifies HALT
-	addInstruction = function(instruction){
-		if(!(instruction && instruction.currentState && instruction.valueOnStack ))
+	var addInstruction = function(instruction){
+		if(!(instruction && instruction.currentState && instruction.valueOnTape ))
 			throw new Error("Instruction not structured properly.");
 		return table.push(instruction);		
 	}
-
+	
+	//returns replacementValue and headMovement for a set of currentState and valueOnStack
+	var getInstruction = function(){
+		var valueOnTape = tape.readTape(head);
+		var instruction = _.find(table,function(instruction){
+			return (instruction.currentState == currentState && instruction.valueOnTape == valueOnTape)
+		});
+		return instruction;		
+	}
 module.exports.addInstruction = addInstruction;
+module.exports.getInstruction = getInstruction;

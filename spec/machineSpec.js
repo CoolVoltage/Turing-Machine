@@ -18,7 +18,7 @@ describe('Tape operations',function(){
 		.toEqual("B")
 	});
 
-	it("symbolExists",function(){
+	it("symbolExistsOnTape",function(){
 		expect(function(){
 			tape.leftStack = ["A"];
 			tape.rightStack = ["C"];
@@ -45,20 +45,37 @@ describe('Tape operations',function(){
 });
 
 describe('Public Functions',function(){
-	
+	var set = {
+		currentState : "0",
+		valueOnTape : "1",
+		replacementValue : "A",
+		headMovement : "L"	
+	}
+		
 	it("addInstruction",function(){
 		expect(function(){
-			var mac =turingMachine;
-			var set = {
-				currentState : "0",
-				valueOnStack : "1",
-				replacementValue : "A",
-				headMovement : "L"		
-			
-			};
-			return mac.addInstruction(set);
+			return turingMachine.addInstruction(set);
 		}())
 		.toEqual(jasmine.any(Number));
+	});
+	
+	it('getInstruction',function(){
+		expect(function(){
+			turingMachine.__set__("head",0);
+			turingMachine.__set__("currentState","0");
+			turingMachine.__get__("tape").writeTape(0,"1");
+			return turingMachine.getInstruction();
+		}())
+		.toEqual(set);	
 	});	
-
+	
+	it("notDefinedState",function(){
+		expect(function(){
+			turingMachine.__set__("currentState","1");
+			turingMachine.__set__("head",0);
+			turingMachine.__get__("tape").writeTape(0,"1");
+			return turingMachine.getInstruction();	
+		}())
+		.toBeUndefined();	
+	});
 });
