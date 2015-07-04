@@ -11,7 +11,7 @@ describe('Error Handlers in machine.js',function(){
 describe('Tape operations',function(){
 	var tape = turingMachine.__get__("tape");
 
-	it("blankTape",function(){
+	it("blankTape read",function(){
 		expect(function(){
 			return tape.readTape(-1);
 		}())
@@ -27,7 +27,21 @@ describe('Tape operations',function(){
 		}())
 		.toEqual("A");	
 	});
+
+	it("blankTape write",function(){
+		expect(function(){
+			return tape.writeTape(1,"C");		
+		}())
+		.toEqual("C");	
+	});
 	
+	it("overwrite write",function(){
+		expect(function(){
+			tape.leftStack = ["A"];
+			return tape.writeTape(-1,"D");		
+		}())
+		.toEqual("D");	
+	}); 
 });
 
 describe('Public Functions',function(){

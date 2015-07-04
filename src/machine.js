@@ -7,28 +7,44 @@
 	// rightStack's growth represent tape growth on the right
 	var tape = new (function(){
 			this.leftStack=[],this.rightStack=[];
+			
+			var getAbsPosition = function(position){
+				if(position < 0)		
+					return position*-1 -1;
+				else
+					return position;
+			}
+
+			var getStack = function(position){
+				var absPosition = getAbsPosition(position);
+				var stack;
+
+				if(position < 0){
+					stack = this.leftStack;
+
+				}else{
+					stack = this.rightStack;
+				}	
+				//B is reserved for blank
+				//extend tape by pushing blanks
+				while(stack.length <= absPosition){
+					stack.push("B");	
+				}	
+
+				return stack;
+			}
 
 			this.readTape = function(position){
-
-			var absPosition,stack;
-
-			if(position < 0){
-				// -1 is 0 on leftStack
-				absPosition = position*-1 - 1;
-				stack = this.leftStack;
-
-			}else{
-				// 0 is 0 on rightStack
-				absPosition = position;
-				stack = this.rightStack;
-			}	
-
-			//B is reserved for blank
-			if(stack.length <= absPosition)
-				return "B";
-			else
+				var stack = getStack.call(this,position);
+				var absPosition = getAbsPosition.call(this,position);		
 				return stack[absPosition];
-
+			}
+			
+			this.writeTape = function(position,symbol){
+				var stack = getStack.call(this,position);
+				var absPosition = getAbsPosition.call(this,position);
+				stack[absPosition] = symbol;	
+				return stack[absPosition];
 			}
 	})();
 	//Current state of the machine

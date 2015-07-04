@@ -1,6 +1,6 @@
 {
   "name": "turingmachine",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Implementation of turing machine",
   "scripts": {
     "test": "jasmine"
