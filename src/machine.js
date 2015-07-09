@@ -3,6 +3,8 @@ var _ = require("underscore");
 
 	//The head of the machine varies -MAX_SAFE_INTEGER to +MAX_SAFE_INTEGER
 	var head = 0;
+	// Performance measurement
+	var power = 100;
 	//Tape is represented by two stacks
 	// leftStack's growth represent tape growth on the left
 	// rightStack's growth represent tape growth on the right
