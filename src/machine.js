@@ -74,5 +74,11 @@ var _ = require("underscore");
 		});
 		return instruction;		
 	}
+	//To reset turing machine
+	var resetMachine = function() {
+		currentState = 0;
+		valueOnTape = 0;
+		position = 0;
+	}
 module.exports.addInstruction = addInstruction;
 module.exports.getInstruction = getInstruction;
