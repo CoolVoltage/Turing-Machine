@@ -3,6 +3,8 @@ var _ = require("underscore");
 
 	//The head of the machine varies -MAX_SAFE_INTEGER to +MAX_SAFE_INTEGER
 	var head = 0;
+	// Performance measurement
+	var power = 100;
 	//Tape is represented by two stacks
 	// leftStack's growth represent tape growth on the left
 	// rightStack's growth represent tape growth on the right
@@ -71,6 +73,12 @@ var _ = require("underscore");
 			return (instruction.currentState == currentState && instruction.valueOnTape == valueOnTape)
 		});
 		return instruction;		
+	}
+	//To reset turing machine
+	var resetMachine = function() {
+		currentState = 0;
+		valueOnTape = 0;
+		position = 0;
 	}
 module.exports.addInstruction = addInstruction;
 module.exports.getInstruction = getInstruction;
